@@ -14,13 +14,13 @@
     </header>
     <main class="content">
         <section class="profile">
-            <img class="profile__avatar" src="./images/Avatar.png" alt="Жак-Ив Кусто фото">
+            <img class="profile__avatar" src="./images/Avatar.png" alt="Аватар пользователя">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <p class="profile__profession">Исследователь океана</p>
-                <button class="profile__info-change-button"></button>
+                <button class="profile__info-change-button" type="button" aria-label="Изменить профиль"></button>
             </div>
-            <button class="profile__add-button"></button>
+            <button class="profile__add-button" type="button"></button>
         </section>
         <section class="elements">
             <ul class="elements__items">
@@ -28,42 +28,42 @@
                     <img class="elements__image" src="./images/eyyafjal.jpg" alt="фото эйяфьядлайёкюдль">
                     <div class="elements__group">
                         <h2 class="elements__title">Эйяфьядлайёкюдль</h2>
-                        <button class="elements__like-button"></button>
+                        <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
                     </div>
                 </li>
                 <li class="elements__item">
                     <img class="elements__image" src="./images/elbrus.jpg" alt="фото эльбрус">
                     <div class="elements__group">
                         <h2 class="elements__title">Эльбрус</h2>
-                        <button class="elements__like-button"></button>
+                        <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
                     </div>
                 </li>
                 <li class="elements__item">
                     <img class="elements__image" src="./images/kilimanjaro.jpg" alt="фото килиманджаро">
                     <div class="elements__group">
                         <h2 class="elements__title">Килиманджаро</h2>
-                        <button class="elements__like-button"></button>
+                        <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
                     </div>
                 </li>
                 <li class="elements__item">
                     <img class="elements__image" src="./images/elbrus.jpg" alt="фото эльбрус">
                     <div class="elements__group">
                         <h2 class="elements__title">Эльбрус</h2>
-                        <button class="elements__like-button"></button>
+                        <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
                     </div>
                 </li>
                 <li class="elements__item">
                     <img class="elements__image" src="./images/eyyafjal.jpg" alt="эйяфьядлайёкюдль">
                     <div class="elements__group">
                         <h2 class="elements__title">Эйяфьядлайёкюдль</h2>
-                        <button class="elements__like-button"></button>
+                        <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
                     </div>
                 </li>
                 <li class="elements__item">
                     <img class="elements__image" src="./images/kilimanjaro.jpg" alt="фото килиманджаро">
                     <div class="elements__group">
                         <h2 class="elements__title">Килиманджаро</h2>
-                        <button class="elements__like-button"></button>
+                        <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
                     </div>
                 </li>
             </ul>
@@ -76,11 +76,11 @@
       <div class="popup__container">
         <form class="form" name="change-name">
             <h2 class="form__title">Редактировать профиль</h2>
-            <input class="form__input form__input-name" type="text" placeholder="Имя">
-            <input class="form__input form__input-profession" type="text"  placeholder="О себе">
+            <input class="form__input form__input_data_name" type="text" placeholder="Имя" name="name">
+            <input class="form__input form__input_data_profession" type="text"  placeholder="О себе" name="profession">
             <button class="form__save-button" type="submit">Сохранить</button>
-            <button class="form__close-button" type="reset"></button>
         </form>
+        <button class="popup__close-button" type="button"></button>
       </div>
     </div>
     <script src="./scripts/index.js"></script>

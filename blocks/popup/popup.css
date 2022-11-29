@@ -1,17 +1,13 @@
 .popup {
     display: none;
-    opacity: 0;
-    transition: visibility .5s, opacity .5s ease;
-}
-
-.popup::before {
-    content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: #000;
-    opacity: .5;
-    transition: opacity .5s ease;
-}
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .5);
+    opacity: 0;
+    transition: visibility .3s, opacity .3s linear;
+  }
