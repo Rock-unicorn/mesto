@@ -1,5 +1,5 @@
 .footer {
-    width: calc(100% - 200px*2); 
+    width: calc(100% - 200px*2);
     margin: 0 auto;
     display: flex;
     align-items: flex-start;
