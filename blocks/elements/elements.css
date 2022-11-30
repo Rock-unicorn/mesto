@@ -3,3 +3,9 @@
     margin: 0 auto 66px;
     padding: 0;    
 }
+
+@media screen and (max-width:425px) {
+    .elements {
+        margin-bottom: 48px;
+    }
+}
