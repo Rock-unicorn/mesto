@@ -24,65 +24,54 @@
         </section>
         <section class="elements">
             <ul class="elements__items">
-                <li class="elements__item">
-                    <img class="elements__image" src="./images/eyyafjal.jpg" alt="фото эйяфьядлайёкюдль">
-                    <div class="elements__group">
-                        <h2 class="elements__title">Эйяфьядлайёкюдль</h2>
-                        <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
-                    </div>
-                </li>
-                <li class="elements__item">
-                    <img class="elements__image" src="./images/elbrus.jpg" alt="фото эльбрус">
-                    <div class="elements__group">
-                        <h2 class="elements__title">Эльбрус</h2>
-                        <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
-                    </div>
-                </li>
-                <li class="elements__item">
-                    <img class="elements__image" src="./images/kilimanjaro.jpg" alt="фото килиманджаро">
-                    <div class="elements__group">
-                        <h2 class="elements__title">Килиманджаро</h2>
-                        <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
-                    </div>
-                </li>
-                <li class="elements__item">
-                    <img class="elements__image" src="./images/elbrus.jpg" alt="фото эльбрус">
-                    <div class="elements__group">
-                        <h2 class="elements__title">Эльбрус</h2>
-                        <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
-                    </div>
-                </li>
-                <li class="elements__item">
-                    <img class="elements__image" src="./images/eyyafjal.jpg" alt="эйяфьядлайёкюдль">
-                    <div class="elements__group">
-                        <h2 class="elements__title">Эйяфьядлайёкюдль</h2>
-                        <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
-                    </div>
-                </li>
-                <li class="elements__item">
-                    <img class="elements__image" src="./images/kilimanjaro.jpg" alt="фото килиманджаро">
-                    <div class="elements__group">
-                        <h2 class="elements__title">Килиманджаро</h2>
-                        <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
-                    </div>
-                </li>
             </ul>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__author">&copy;&nbsp;2022 Dmitry Tsygankov</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup-edit">
       <div class="popup__container">
-        <form class="form" name="change-name">
+        <form class="form form-edit" name="change-name">
             <h2 class="form__title">Редактировать профиль</h2>
             <input class="form__input form__input_data_name" type="text" placeholder="Имя" name="name">
             <input class="form__input form__input_data_profession" type="text"  placeholder="О себе" name="profession">
             <button class="form__save-button" type="submit">Сохранить</button>
         </form>
-        <button class="popup__close-button" type="button"></button>
+        <button class="popup__close-button popup-edit__close-button" type="button"></button>
       </div>
     </div>
+    <div class="popup popup-add">
+        <div class="popup__container">
+            <form class="form form-add" name="add-element">
+                <h2 class="form__title">Новове место</h2>
+                <input class="form__input form__input_element_name" type="text" placeholder="Название" name="element-name">
+                <input class="form__input form__input_element_link" type="text"  placeholder="Ссылка на картинку" name="element-link">
+                <button class="form__save-button" type="submit">Создать</button>
+            </form>
+            <button class="popup__close-button popup-add__close-button" type="button"></button>
+        </div>
+    </div>
+    <div class="popup popup-photo">
+        <div class="popup-photo__container">
+            <figure class="popup-photo__figure">
+                <img alt="" class="popup-photo__image" src=" ">
+                <figcaption class="popup-photo__figcaption"></figcaption>
+                <button class="popup__close-button popup-photo__close-button" type="button"></button>
+            </figure>
+            
+        </div>
+    </div>
+    <template id="elements-items-template">
+        <li class="elements__item">
+            <img class="elements__image" src=" ">
+            <div class="elements__group">
+                <h2 class="elements__title"></h2>
+                <button class="elements__like-button" type="button" aria-label="Лайкнуть фото"></button>
+            </div>
+            <button class="elements__delete-button" aria-label="удалить фотографию"></button>
+        </li>
+      </template>
     <script src="./scripts/index.js"></script>
 </body>
 
