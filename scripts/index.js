@@ -1,3 +1,25 @@
+const changeProfile = document.querySelector('.profile__info-change-button'); // ищем кнопку редактирования профиля
+const popupEdit = document.querySelector('.popup-edit'); // ищем попап редактирования профиля
+const formEditSave = document.querySelector('.form-edit'); // ищем форму редактирования профиля
+const infoName = document.querySelector('.profile__name'); // ищем имя в профиле 
+const infoProfession = document.querySelector('.profile__profession'); // ищем профессию в профиле
+const nameContainer = document.querySelector('.form__input_data_name'); // ищем input для имени
+const professionContainer = document.querySelector('.form__input_data_profession'); //ищем input для профессии
+const popupImage = document.querySelector('.popup-photo__image'); //ищем фото попапа места
+const caption = document.querySelector('.popup-photo__figcaption'); // ищем подпись попапа места
+const addElementButton = document.querySelector('.profile__add-button'); // ищем кнопку добавления новых мест
+const popupAdd = document.querySelector('.popup-add'); // ищем попап доавления новых мест
+const elementsContainer = document.querySelector('.elements__items'); //ищем список карточек с местами
+// ищем поля ввода для новых мест
+const inputElementName = document.querySelector('.form__input_element_name');
+const inputElementLink = document.querySelector('.form__input_element_link');
+//ищем форму добавления новых мест
+const formAddSave = document.querySelector('.form-add');
+//ищем попап места
+const popupPhoto = document.querySelector('.popup-photo');
+// находим все кнопки закрытия попапа
+const closeButtons = document.querySelectorAll('.popup__close-button');
+
 // функции открытия и закрытия попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -7,29 +29,15 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-const changeProfile = document.querySelector('.profile__info-change-button'); // ищем кнопку редактирования профиля
-const popupEdit = document.querySelector('.popup-edit'); // ищем попап редактирования профиля
-const formEditClose = document.querySelector('.popup-edit__close-button'); // ищем кнопку закрытия попапа редактирования профиля
-const formEditSave = document.querySelector('.form-edit'); // ищем форму редактирования профиля
-const infoName = document.querySelector('.profile__name'); // ищем имя в профиле 
-const infoProfession = document.querySelector('.profile__profession'); // ищем профессию в профиле
-const nameContainer = document.querySelector('.form__input_data_name'); // ищем input для имени
-const professionContainer = document.querySelector('.form__input_data_profession'); //ищем input для профессии
-
 // функция открытия попапа редактирования профиля с присвоением изначальных значений в поля ввода
-function OpenEditPopup() {
+function openEditPopup() {
     openPopup(popupEdit);
     nameContainer.value = infoName.textContent;
     professionContainer.value = infoProfession.textContent;
 }
 
 // слушатель открытия попапа по кнопке
-changeProfile.addEventListener('click', OpenEditPopup);
-
-// слушатель закрытия попапа по кнопке
-formEditClose.addEventListener('click', function() { 
-  closePopup(popupEdit)
-});
+changeProfile.addEventListener('click', openEditPopup);
 
 // функция изменения имени и професии пользователя с закрытием попапа
 function changeInfo(evt) {
@@ -42,15 +50,6 @@ function changeInfo(evt) {
 
 // слушатель редактирования профиля по кнопке
 formEditSave.addEventListener('submit', changeInfo);
-
-const addElementButton = document.querySelector('.profile__add-button'); // ищем кнопку добавления новых мест
-const popupAdd = document.querySelector('.popup-add'); // ищем попап доавления новых мест
-const formAddClose = document.querySelector('.popup-add__close-button'); // ищем кнопку закрытия попапа добавления
-
-// слушатель закрытия попапа добавления мест
-formAddClose.addEventListener('click', function() {
-  closePopup(popupAdd)
-});
 
 // слушатель открытия попапа добавления мест
 addElementButton.addEventListener('click', function() {
@@ -86,9 +85,6 @@ const initialCards = [
     }
   ];
 
-const elementsContainer = document.querySelector('.elements__items'); //ищем список карточек с местами
-
-
 // функция предзагрузки массива карточек с местами и добавления новых карт с функционалом лайка, открытия попапа картинки и удаления места
 const createElement = (item) => {
     const template = document.querySelector('#elements-items-template'); // ищем шаблон
@@ -117,12 +113,6 @@ initialCards.forEach(item => {
     renderElement(item);
 });
 
-// ищем поля ввода для новых мест
-const inputElementName = document.querySelector('.form__input_element_name');
-const inputElementLink = document.querySelector('.form__input_element_link');
-//ищем форму добавления новых мест
-const formAddSave = document.querySelector('.form-add');
-
 //функция добавления нового места с объявлением объекта
 function createNewElement(evt) {
   evt.preventDefault()
@@ -137,22 +127,19 @@ function createNewElement(evt) {
 //слушатель добавления нового места
 formAddSave.addEventListener('submit', createNewElement);
 
-//ищем попап места
-const popupPhoto = document.querySelector('.popup-photo');
-
 //функция открытия попапа места
 function openPhoto(evt) {
   openPopup(popupPhoto);
-  const popupImage = document.querySelector('.popup-photo__image');
-  const caption = document.querySelector('.popup-photo__figcaption');
   popupImage.src = evt.currentTarget.src;
   popupImage.alt = evt.currentTarget.alt;
   caption.textContent = evt.currentTarget.alt;
 
 };
 
-//закрытие попапа места
-const closePhoto = document.querySelector('.popup-photo__close-button');
-closePhoto.addEventListener('click', function() {
-  closePopup(popupPhoto)
+// функция закрытия попапов
+closeButtons.forEach((button) => {
+  // находим 1 раз ближайший к крестику попап 
+  const popup = button.closest('.popup');
+  // устанавливаем обработчик закрытия на крестик
+  button.addEventListener('click', () => closePopup(popup));
 });
