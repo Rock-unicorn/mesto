@@ -19,14 +19,18 @@ const formAddSave = document.querySelector('.form-add');
 const popupPhoto = document.querySelector('.popup-photo');
 // находим все кнопки закрытия попапа
 const closeButtons = document.querySelectorAll('.popup__close-button');
+// ищем все попапы
+const popups = document.querySelectorAll('.popup');
 
 // функции открытия и закрытия попапов
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
 // функция открытия попапа редактирования профиля с присвоением изначальных значений в поля ввода
@@ -136,10 +140,38 @@ function openPhoto(evt) {
 
 };
 
-// функция закрытия попапов
+// функция закрытия попапов по кнопке закрытия
 closeButtons.forEach((button) => {
   // находим 1 раз ближайший к крестику попап 
   const popup = button.closest('.popup');
   // устанавливаем обработчик закрытия на крестик
   button.addEventListener('click', () => closePopup(popup));
 });
+
+// функция закрытия попапов по клавише ESC
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
+// функция закрытия попапов по темному фону при условии, что он открыт
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if(evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+  });
+});
+
+// объект с необходимымми селекорами для дальнейшей валидации
+const validationConfig = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__save-button',
+  inactiveButtonClass: 'form__save-button_disabled',
+  inputErrorClass: 'form__input_error',
+  errorClass: 'form__error_visible'
+};
+// вызов функции валидации
+enableValidation(validationConfig);

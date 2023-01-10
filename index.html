@@ -31,22 +31,29 @@
         <p class="footer__author">&copy;&nbsp;2022 Dmitry Tsygankov</p>
     </footer>
     <div class="popup popup-edit">
-      <div class="popup__container">
-        <form class="form form-edit" name="change-name">
-            <h2 class="form__title">Редактировать профиль</h2>
-            <input class="form__input form__input_data_name" type="text" placeholder="Имя" name="name">
-            <input class="form__input form__input_data_profession" type="text"  placeholder="О себе" name="profession">
-            <button class="form__save-button" type="submit">Сохранить</button>
-        </form>
-        <button class="popup__close-button popup-edit__close-button" type="button"></button>
-      </div>
+        <div class="popup__container">
+            <form class="form form-edit" name="change-name" novalidate>
+                <h2 class="form__title">Редактировать профиль</h2>
+                <input class="form__input form__input_data_name" type="text" placeholder="Имя" name="name" id="name" required minlength="2" maxlength="40">
+                <span class="form__error name-error"></span>
+                <input class="form__input form__input_data_profession" type="text" placeholder="О себе"
+                    name="profession" id="profession" required minlength="2" maxlength="200">
+                <span class="form__error profession-error"></span>
+                <button class="form__save-button" type="submit">Сохранить</button>
+            </form>
+            <button class="popup__close-button popup-edit__close-button" type="button"></button>
+        </div>
     </div>
     <div class="popup popup-add">
         <div class="popup__container">
-            <form class="form form-add" name="add-element">
+            <form class="form form-add" name="add-element" novalidate>
                 <h2 class="form__title">Новове место</h2>
-                <input class="form__input form__input_element_name" type="text" placeholder="Название" name="element-name">
-                <input class="form__input form__input_element_link" type="text"  placeholder="Ссылка на картинку" name="element-link">
+                <input class="form__input form__input_element_name" type="text" placeholder="Название"
+                    name="element-name" id="element-name" required minlength="2" maxlength="30">
+                <span class="form__error element-name-error"></span>
+                <input class="form__input form__input_element_link" type="url" placeholder="Ссылка на картинку"
+                    name="element-link" id="element-link" required>
+                <span class="form__error element-link-error"></span>
                 <button class="form__save-button" type="submit">Создать</button>
             </form>
             <button class="popup__close-button popup-add__close-button" type="button"></button>
@@ -59,7 +66,7 @@
                 <figcaption class="popup-photo__figcaption"></figcaption>
                 <button class="popup__close-button popup-photo__close-button" type="button"></button>
             </figure>
-            
+
         </div>
     </div>
     <template id="elements-items-template">
@@ -71,7 +78,8 @@
             </div>
             <button class="elements__delete-button" aria-label="удалить фотографию"></button>
         </li>
-      </template>
+    </template>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
 </body>
 
