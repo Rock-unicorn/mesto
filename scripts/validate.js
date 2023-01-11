@@ -31,13 +31,23 @@ function hasInvalidInput(inputList) {
 }
 
 // функция дизейбла кнопки
-function toggleButtonState(inputList, buttonElement, config) {
-    if (hasInvalidInput(inputList)) {
+function disableButtonState(buttonElement, config) {
         buttonElement.classList.add(config.inactiveButtonClass);
         buttonElement.disabled = true;
+}
+
+// функция энейбла кнопки
+function enableButtonState(buttonElement, config) {
+      buttonElement.classList.remove(config.inactiveButtonClass);
+      buttonElement.disabled = false;
+}
+
+//функция энейбла или дизейбла при проверке валидности
+function toggleButtonState(inputList, buttonElement, config) {
+    if (hasInvalidInput(inputList)) {
+        disableButtonState(buttonElement, config);
     } else {
-        buttonElement.classList.remove(config.inactiveButtonClass);
-        buttonElement.disabled = false;
+        enableButtonState(buttonElement, config);
     }
 }
 
@@ -58,7 +68,7 @@ function setEventListeners(formElement, config) {
 
 // функция создания коллекции всех форм с присвоением каждой выполнение и вызов функции выше
 function enableValidation(config) {
-    const formList = Array.from(document.querySelectorAll(config.formSelector));
+    const formList = document.querySelectorAll(config.formSelector);
 
     formList.forEach((formElement) => {
         setEventListeners(formElement, config)

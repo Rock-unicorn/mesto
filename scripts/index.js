@@ -1,6 +1,6 @@
 const changeProfile = document.querySelector('.profile__info-change-button'); // ищем кнопку редактирования профиля
 const popupEdit = document.querySelector('.popup-edit'); // ищем попап редактирования профиля
-const formEditSave = document.querySelector('.form-edit'); // ищем форму редактирования профиля
+const formEdit = document.querySelector('.form-edit'); // ищем форму редактирования профиля
 const infoName = document.querySelector('.profile__name'); // ищем имя в профиле 
 const infoProfession = document.querySelector('.profile__profession'); // ищем профессию в профиле
 const nameContainer = document.querySelector('.form__input_data_name'); // ищем input для имени
@@ -14,13 +14,15 @@ const elementsContainer = document.querySelector('.elements__items'); //ищем
 const inputElementName = document.querySelector('.form__input_element_name');
 const inputElementLink = document.querySelector('.form__input_element_link');
 //ищем форму добавления новых мест
-const formAddSave = document.querySelector('.form-add');
+const formAdd = document.querySelector('.form-add');
 //ищем попап места
 const popupPhoto = document.querySelector('.popup-photo');
 // находим все кнопки закрытия попапа
 const closeButtons = document.querySelectorAll('.popup__close-button');
 // ищем все попапы
 const popups = document.querySelectorAll('.popup');
+// кнопка сохранить из формы добавления карточки
+const buttonSaveAdd = document.querySelector('.save-button-add');
 
 // функции открытия и закрытия попапов
 function openPopup(popup) {
@@ -53,41 +55,12 @@ function changeInfo(evt) {
 }
 
 // слушатель редактирования профиля по кнопке
-formEditSave.addEventListener('submit', changeInfo);
+formEdit.addEventListener('submit', changeInfo);
 
 // слушатель открытия попапа добавления мест
 addElementButton.addEventListener('click', function() {
   openPopup(popupAdd)
 });
-
-
-// массив предзагрузки карточек с местами
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
 
 // функция предзагрузки массива карточек с местами и добавления новых карт с функционалом лайка, открытия попапа картинки и удаления места
 const createElement = (item) => {
@@ -109,27 +82,29 @@ const createElement = (item) => {
     return element;
 };
 
-const renderElement = item => {
+const renderInitialElement = item => {
     elementsContainer.append(createElement(item));
 };
 
 initialCards.forEach(item => {
-    renderElement(item);
+  renderInitialElement(item);
 });
 
 //функция добавления нового места с объявлением объекта
 function createNewElement(evt) {
   evt.preventDefault()
-  const newCard = {}
-  newCard.name = inputElementName.value;
-  newCard.link = inputElementLink.value;
+  const newCard = {
+    name: inputElementName.value,
+    link: inputElementLink.value
+  }
   elementsContainer.prepend(createElement(newCard));
   closePopup(popupAdd);
   evt.target.reset();
+  disableButtonState(buttonSaveAdd, validationConfig);
 }
 
 //слушатель добавления нового места
-formAddSave.addEventListener('submit', createNewElement);
+formAdd.addEventListener('submit', createNewElement);
 
 //функция открытия попапа места
 function openPhoto(evt) {
